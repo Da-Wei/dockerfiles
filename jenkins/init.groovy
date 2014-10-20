@@ -42,3 +42,4 @@ def result = site.updateData(json, false)
 Jenkins.instance.updateCenter.getPlugin("cloudbees-folder").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("job-dsl").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("github").deploy(true)
+
