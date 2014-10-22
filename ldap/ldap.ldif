@@ -1,0 +1,57 @@
+dn: ou=People,dc=icdc,dc=local
+ou: People
+objectclass: top
+objectclass: organizationalUnit
+
+dn: ou=Group,dc=icdc,dc=local
+ou: Group
+objectclass: top
+objectclass: organizationalUnit
+
+dn: uid=jenkins, ou=People, dc=icdc, dc=local
+objectClass: top
+objectClass: Person
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword: {SSHA}r4HoQkqrxmELS4i/O+/vZZIvhlK3OVbb
+uid: jenkins
+uidNumber: 10000
+cn: jenkins
+loginShell: /bin/bash
+gidNumber: 10000
+gecos: Jenkins Admin
+description: Jenkins Admin
+homeDirectory: /home/jenkins
+sn: jenkins
+
+dn: uid=demo, ou=People, dc=icdc, dc=local
+objectClass: top
+objectClass: Person
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword: {SSHA}cIoZcBjZvCPy6Ydnx7LtyFjlauh85kTU
+uid: demo
+uidNumber: 10001
+cn: demo
+loginShell: /bin/bash
+gidNumber: 10001
+gecos: Demo User
+description: Demo User
+homeDirectory: /home/demo
+sn: demo
+
+dn: cn=Jenkins Admins,ou=Group,dc=icdc,dc=local
+cn: Jenkins Admins
+gidNumber: 10000
+memberUid: jenkins
+description: Groupe des administrateurs de jenkins
+objectClass: posixGroup
+
+dn: cn=Jenkins Users,ou=Group,dc=icdc,dc=local
+cn: Jenkins Users
+gidNumber: 10001
+memberUid: demo
+description: Groupe des utilisateurs de jenkins
+objectClass: posixGroup
