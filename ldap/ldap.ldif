@@ -1,14 +1,31 @@
-dn: ou=People,dc=icdc,dc=local
+dn: ou=People,dc=test,dc=local
 ou: People
 objectclass: top
 objectclass: organizationalUnit
 
-dn: ou=Group,dc=icdc,dc=local
+dn: ou=Group,dc=test,dc=local
 ou: Group
 objectclass: top
 objectclass: organizationalUnit
 
-dn: uid=jenkins, ou=People, dc=icdc, dc=local
+dn: uid=generic, ou=People, dc=test, dc=local
+objectClass: top
+objectClass: Person
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+userPassword: {SSHA}Kf//TbfdUHvWIzb2QLvmYjmrOPYTH0Ab
+uid: generic
+uidNumber: 9999
+cn: generic
+loginShell: /bin/bash
+gidNumber: 10000
+gecos: Generic account for read-only access
+description: Generic Account
+homeDirectory: /home/generic
+sn: jenkins
+
+dn: uid=jenkins, ou=People, dc=test, dc=local
 objectClass: top
 objectClass: Person
 objectClass: inetOrgPerson
@@ -25,7 +42,7 @@ description: Jenkins Admin
 homeDirectory: /home/jenkins
 sn: jenkins
 
-dn: uid=demo, ou=People, dc=icdc, dc=local
+dn: uid=demo, ou=People, dc=test, dc=local
 objectClass: top
 objectClass: Person
 objectClass: inetOrgPerson
@@ -42,14 +59,14 @@ description: Demo User
 homeDirectory: /home/demo
 sn: demo
 
-dn: cn=Jenkins Admins,ou=Group,dc=icdc,dc=local
+dn: cn=Jenkins Admins,ou=Group,dc=test,dc=local
 cn: Jenkins Admins
 gidNumber: 10000
 memberUid: jenkins
 description: Groupe des administrateurs de jenkins
 objectClass: posixGroup
 
-dn: cn=Jenkins Users,ou=Group,dc=icdc,dc=local
+dn: cn=Jenkins Users,ou=Group,dc=test,dc=local
 cn: Jenkins Users
 gidNumber: 10001
 memberUid: demo

@@ -1,5 +1,6 @@
 import jenkins.model.*
 import hudson.security.LDAPSecurityRealm;
+import hudson.security.GlobalMatrixAuthorizationStrategy;
 
 /*
 Thread.start {
@@ -12,15 +13,18 @@ Jenkins.instance.setSecurityRealm(
   new hudson.security.LDAPSecurityRealm(
     'ldap',
     '',
-    'ou=People, dc=icdc, dc=local',
+    'ou=People, dc=test, dc=local',
     '',
-    'ou=Group,dc=icdc,dc=local',
-    'cn=admin,dc=icdc,dc=local',
+    'ou=Group,dc=test,dc=local',
+    'cn=admin,dc=test,dc=local',
     'admin',
     false,
     false
   )
 )
+def secustrategy = new GlobalMatrixAuthorizationStrategy()
+secustrategy.add("hudson.model.Hudson.Administer:Jenkins Admins")
+Jenkins.instance.setAuthorizationStrategy(secustrategy)
 Jenkins.instance.save()
 
 //def originalurl = 'http://updates.jenkins-ci.org/download/'
