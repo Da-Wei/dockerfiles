@@ -1,14 +1,8 @@
 import jenkins.model.*
-import hudson.security.LDAPSecurityRealm;
-import hudson.security.GlobalMatrixAuthorizationStrategy;
+import hudson.security.LDAPSecurityRealm
+import hudson.security.GlobalMatrixAuthorizationStrategy
+//import com.cloudbees.hudson.plugins.folder
 
-/*
-Thread.start {
-  sleep 10000
-  println "--> setting agent port for jnlp"
-  Jenkins.instance.setSlaveAgentPort(50000)
-}
-*/
 Jenkins.instance.setSecurityRealm(
   new hudson.security.LDAPSecurityRealm(
     'ldap',
@@ -27,12 +21,9 @@ secustrategy.add("hudson.model.Hudson.Administer:Jenkins Admins")
 Jenkins.instance.setAuthorizationStrategy(secustrategy)
 Jenkins.instance.save()
 
-//def originalurl = 'http://updates.jenkins-ci.org/download/'
-//def mirroredurl = 'http://jenkins.mirror.isppower.de/' // change to whatever works for you
 def ucUrl = new URL('http://updates.jenkins-ci.org/update-center.json')
 
 // loadJSON is not considered public API
-//def json = hudson.model.DownloadService.loadJSON(ucUrl).replace(originalurl, mirroredurl)
 def json = hudson.model.DownloadService.loadJSON(ucUrl)
 def site = Jenkins.instance.updateCenter.getById('default')
 
@@ -48,3 +39,6 @@ Jenkins.instance.updateCenter.getPlugin("docker-build-step").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("bazaar").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("git").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("groovy").deploy(true)
+
+//def admin_folder = jenkins.createProject(Folder.class, "Admin")
+//admin_folder.setDescription("Administration's jobs");

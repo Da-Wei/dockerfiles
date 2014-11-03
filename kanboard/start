@@ -1,0 +1,14 @@
+#!/bin/bash
+
+/usr/sbin/apache2 -D FOREGROUND &
+_pid=$?
+sleep 20
+curl -s localhost
+(cat <<EOF
+UPDATE settings SET value='${API_TOKEN}' WHERE option='api_token';
+UPDATE settings SET value='Europe/Paris' WHERE option='application_timezone';
+UPDATE settings SET value='fr_FR' WHERE option='application_language';
+UPDATE settings SET value='Y/m/d' WHERE option='application_date_format';
+EOF
+)| sqlite3 /var/www/html/data/db.sqlite
+wait
