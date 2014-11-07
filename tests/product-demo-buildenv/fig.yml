@@ -1,0 +1,4 @@
+kanboard:
+  image: dawei/kanboard
+  ports:
+   - "8000:80"
