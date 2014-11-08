@@ -10,8 +10,9 @@ mv /tmp/elasticsearch-1.4.0 /elasticsearch
 #ADD config/elasticsearch.yml /elasticsearch/config/elasticsearch.yml
 
 # RUN cd /elasticsearch/ && ./bin/plugin -i elasticsearch/marvel/latest
-RUN cd /tmp && wget https://github.com/elasticsearch/kibana/archive/v3.1.1.tar.gz && \
-tar xvfz v3.1.1.tar.gz && mkdir -p /elasticsearch/plugins/kibana/_site && \
-mv /tmp/kibana-3.1.1/src/* /elasticsearch/plugins/kibana/_site/. && rm -rf /tmp/kibana*
+RUN /elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf
+RUN cd /tmp && wget https://github.com/elasticsearch/kibana/archive/v3.1.2.tar.gz && \
+tar xvfz v3.1.2.tar.gz && mkdir -p /elasticsearch/plugins/kibana/_site && \
+mv /tmp/kibana-3.1.2/src/* /elasticsearch/plugins/kibana/_site/. && rm -rf /tmp/kibana*
 ENTRYPOINT ["/elasticsearch/bin/elasticsearch"]
 EXPOSE 9200
