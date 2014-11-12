@@ -14,5 +14,6 @@ RUN /elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf
 RUN cd /tmp && wget https://github.com/elasticsearch/kibana/archive/v3.1.2.tar.gz && \
 tar xvfz v3.1.2.tar.gz && mkdir -p /elasticsearch/plugins/kibana/_site && \
 mv /tmp/kibana-3.1.2/src/* /elasticsearch/plugins/kibana/_site/. && rm -rf /tmp/kibana*
+COPY elasticsearch.yml /elasticsearch/config/elasticsearch.yml
 ENTRYPOINT ["/elasticsearch/bin/elasticsearch"]
 EXPOSE 9200
