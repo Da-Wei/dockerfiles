@@ -1,25 +1,29 @@
 import jenkins.model.*
 import hudson.security.LDAPSecurityRealm
 import hudson.security.GlobalMatrixAuthorizationStrategy
-//import com.cloudbees.hudson.plugins.folder
+import com.cloudbees.hudson.plugins.folder.Folder
 
-Jenkins.instance.setSecurityRealm(
-  new hudson.security.LDAPSecurityRealm(
-    'ldap',
-    '',
-    'ou=People, dc=test, dc=local',
-    '',
-    'ou=Group,dc=test,dc=local',
-    'cn=admin,dc=test,dc=local',
-    'admin',
-    false,
-    false
+def env = System.getenv()
+
+if(env['JENKINS_AUTH'] == 'ldap') {
+  Jenkins.instance.setSecurityRealm(
+    new hudson.security.LDAPSecurityRealm(
+      'ldap',
+      '',
+      'ou=People, dc=test, dc=local',
+      '',
+      'ou=Group,dc=test,dc=local',
+      'cn=admin,dc=test,dc=local',
+      'admin',
+      false,
+      false
+    )
   )
-)
-def secustrategy = new GlobalMatrixAuthorizationStrategy()
-secustrategy.add("hudson.model.Hudson.Administer:Jenkins Admins")
-Jenkins.instance.setAuthorizationStrategy(secustrategy)
-Jenkins.instance.save()
+  def secustrategy = new GlobalMatrixAuthorizationStrategy()
+  secustrategy.add("hudson.model.Hudson.Administer:Jenkins Admins")
+  Jenkins.instance.setAuthorizationStrategy(secustrategy)
+  Jenkins.instance.save()
+}
 
 def ucUrl = new URL('http://updates.jenkins-ci.org/update-center.json')
 
@@ -31,7 +35,6 @@ def site = Jenkins.instance.updateCenter.getById('default')
 def result = site.updateData(json, false) 
 
 //Jenkins.instance.updateCenter.updateAllSites()
-Jenkins.instance.updateCenter.getPlugin("cloudbees-folder").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("job-dsl").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("github").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("docker-plugin").deploy(true)
@@ -40,5 +43,5 @@ Jenkins.instance.updateCenter.getPlugin("bazaar").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("git").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("groovy").deploy(true)
 
-//def admin_folder = jenkins.createProject(Folder.class, "Admin")
+def admin_folder = Jenkins.instance.createProject(Folder.class, "Admin")
 //admin_folder.setDescription("Administration's jobs");
