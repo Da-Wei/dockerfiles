@@ -35,13 +35,21 @@ def site = Jenkins.instance.updateCenter.getById('default')
 def result = site.updateData(json, false) 
 
 //Jenkins.instance.updateCenter.updateAllSites()
-Jenkins.instance.updateCenter.getPlugin("job-dsl").deploy(true)
+//Jenkins.instance.updateCenter.getPlugin("job-dsl").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("github").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("docker-plugin").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("docker-build-step").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("bazaar").deploy(true)
-Jenkins.instance.updateCenter.getPlugin("git").deploy(true)
+//Jenkins.instance.updateCenter.getPlugin("git").deploy(true)
 Jenkins.instance.updateCenter.getPlugin("groovy").deploy(true)
 
+//mavenconf=Jenkins.instance.getExtensionList(hudson.tasks.Maven.DescriptorImpl.class)[0];
+//mavenlist=(mavenconf.installations as List);
+//mavenlist.add(new hudson.tasks.Maven.MavenInstallation("MAVEN3", "/home/apache-maven-3", []));
+//mavenconf.installations=mavenlist
+//mavenconf.save()
+new hudson.tasks.Maven.MavenInstaller('3.2.2')
+
 def admin_folder = Jenkins.instance.createProject(Folder.class, "Admin")
-//admin_folder.setDescription("Administration's jobs");
+admin_folder.setDescription("Administrative's jobs");
+admin_folder.createProjectFromXML("Seed", new FileInputStream("/tmp/seed.xml"))
