@@ -44,25 +44,11 @@ stheme.cssUrl='/userContent/branding-style.css'
 stheme.jsUrl=''
 stheme.save()
 
-// JDKs
-if(!Jenkins.instance.getJDK('default')) {
-  def oracleCredential=Jenkins.instance.getExtensionList(hudson.tools.JDKInstaller.DescriptorImpl.class)[0]
-  oracleCredential.username = 'test'
-  oracleCredential.password = new hudson.util.Secret('tutu')
-  oracleCredential.save()
-
-  def jdkinstsource = new hudson.tools.InstallSourceProperty([new hudson.tools.JDKInstaller('jdk-7u65-oth-JPR', true)])
-  Jenkins.instance.getJDKs().add(new JDK("default",null,[jdkinstsource]))
-  Jenkins.instance.save()
-}
-
-def myinstsource = new hudson.tools.InstallSourceProperty([new hudson.tasks.Maven.MavenInstaller('3.2.2')])
-mavenconf=Jenkins.instance.getExtensionList(hudson.tasks.Maven.DescriptorImpl.class)[0];
-mavenlist=(mavenconf.installations as List);
-mavenlist.add(new hudson.tasks.Maven.MavenInstallation("default", null,[myinstsource]));
-mavenconf.installations=mavenlist
-mavenconf.save()
-
+// for JDKs
+def oracleCredential=Jenkins.instance.getExtensionList(hudson.tools.JDKInstaller.DescriptorImpl.class)[0]
+oracleCredential.username = 'test'
+oracleCredential.password = new hudson.util.Secret('tutu')
+oracleCredential.save()
 
 def admin_folder = Jenkins.instance.createProject(Folder.class, "Admin")
 admin_folder.setDescription("Administrative's jobs");
