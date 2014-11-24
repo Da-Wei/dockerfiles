@@ -39,6 +39,7 @@ branches.repositories.each {
     }
     steps {
       maven(&quot;-e clean test&quot;)
+      mavenInstallation("default")
     }
   }
 }</scriptText>
