@@ -5,17 +5,33 @@ RUN mkdir /usr/share/jenkins/
 RUN useradd -d /home/jenkins -m -s /bin/bash jenkins
 
 RUN curl -L http://mirrors.jenkins-ci.org/war/$JENKINS_VERSION/jenkins.war -o /usr/share/jenkins/jenkins.war
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/cloudbees-folder.hpi -o  /tmp/WEB-INF/plugins/cloudbees-folder.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/job-dsl.hpi -o  /tmp/WEB-INF/plugins/job-dsl.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/scm-api.hpi -o  /tmp/WEB-INF/plugins/scm-api.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/git-client.hpi -o  /tmp/WEB-INF/plugins/git-client.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/git.hpi -o  /tmp/WEB-INF/plugins/git.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/simple-theme-plugin.hpi -o  /tmp/WEB-INF/plugins/simple-theme-plugin.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/bazaar.hpi -o  /tmp/WEB-INF/plugins/bazaar.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/groovy.hpi -o  /tmp/WEB-INF/plugins/groovy.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/docker-plugin.hpi -o  /tmp/WEB-INF/plugins/docker-plugin.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/docker-build-step.hpi -o  /tmp/WEB-INF/plugins/docker-build-step.hpi
-RUN mkdir -p /tmp/WEB-INF/plugins && curl -L http://updates.jenkins-ci.org/latest/durable-task.hpi -o  /tmp/WEB-INF/plugins/durable-task.hpi
+RUN mkdir -p /tmp/WEB-INF/plugins
+RUN curl -L http://updates.jenkins-ci.org/latest/cloudbees-folder.hpi -o  /tmp/WEB-INF/plugins/cloudbees-folder.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/job-dsl.hpi -o  /tmp/WEB-INF/plugins/job-dsl.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/scm-api.hpi -o  /tmp/WEB-INF/plugins/scm-api.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/git-client.hpi -o  /tmp/WEB-INF/plugins/git-client.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/git.hpi -o  /tmp/WEB-INF/plugins/git.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/simple-theme-plugin.hpi -o  /tmp/WEB-INF/plugins/simple-theme-plugin.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/bazaar.hpi -o  /tmp/WEB-INF/plugins/bazaar.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/groovy.hpi -o  /tmp/WEB-INF/plugins/groovy.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/docker-plugin.hpi -o  /tmp/WEB-INF/plugins/docker-plugin.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/docker-build-step.hpi -o  /tmp/WEB-INF/plugins/docker-build-step.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/durable-task.hpi -o  /tmp/WEB-INF/plugins/durable-task.hpi
+
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-aggregator.hpi -o  /tmp/WEB-INF/plugins/workflow-aggregator.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-api.hpi -o  /tmp/WEB-INF/plugins/workflow-api.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-basic-steps.hpi -o  /tmp/WEB-INF/plugins/workflow-basic-steps.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-cps.hpi -o  /tmp/WEB-INF/plugins/workflow-cps.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-cps-global-lib.hpi -o  /tmp/WEB-INF/plugins/workflow-cps-global-lib.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-durable-task-step.hpi -o  /tmp/WEB-INF/plugins/workflow-durable-task-step.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-job.hpi -o  /tmp/WEB-INF/plugins/workflow-job.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-scm-step.hpi -o  /tmp/WEB-INF/plugins/workflow-scm-step.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-step-api.hpi -o  /tmp/WEB-INF/plugins/workflow-step-api.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/workflow-support.hpi -o  /tmp/WEB-INF/plugins/workflow-support.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/script-security.hpi -o  /tmp/WEB-INF/plugins/script-security.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/git-server.hpi -o  /tmp/WEB-INF/plugins/git-server.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/mapdb-api.hpi -o  /tmp/WEB-INF/plugins/mapdb-api.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/subversion.hpi -o  /tmp/WEB-INF/plugins/subversion.hpi
 
 COPY init.groovy /tmp/WEB-INF/init.groovy
 
