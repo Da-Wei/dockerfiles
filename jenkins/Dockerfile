@@ -1,6 +1,6 @@
 FROM dawei/java
 
-ENV JENKINS_VERSION 1.588
+ENV JENKINS_VERSION latest
 RUN mkdir /usr/share/jenkins/
 RUN useradd -d /home/jenkins -m -s /bin/bash jenkins
 
