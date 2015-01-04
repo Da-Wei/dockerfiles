@@ -32,6 +32,9 @@ RUN curl -L http://updates.jenkins-ci.org/latest/script-security.hpi -o  /tmp/WE
 RUN curl -L http://updates.jenkins-ci.org/latest/git-server.hpi -o  /tmp/WEB-INF/plugins/git-server.hpi
 RUN curl -L http://updates.jenkins-ci.org/latest/mapdb-api.hpi -o  /tmp/WEB-INF/plugins/mapdb-api.hpi
 RUN curl -L http://updates.jenkins-ci.org/latest/subversion.hpi -o  /tmp/WEB-INF/plugins/subversion.hpi
+RUN curl -L http://updates.jenkins-ci.org/latest/commit-message-trigger-plugin.hpi -o  /tmp/WEB-INF/plugins/commit-message-trigger-plugin.hpi
+
+
 
 COPY init.groovy /tmp/WEB-INF/init.groovy
 
