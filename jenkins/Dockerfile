@@ -45,6 +45,8 @@ ADD branding /var/jenkins_home/userContent
 RUN chown -R jenkins "$JENKINS_HOME"
 VOLUME /var/jenkins_home
 
+RUN apt-get update && apt-get -y install git-flow openssh-client
+
 # define url prefix for running jenkins behind Apache (https://wiki.jenkins-ci.org/display/JENKINS/Running+Jenkins+behind+Apache)
 ENV JENKINS_PREFIX /
 ENV JENKINS_AUTH none
