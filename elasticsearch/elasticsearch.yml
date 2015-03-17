@@ -18,7 +18,7 @@
 # Any element in the configuration can be replaced with environment variables
 # by placing them in ${...} notation. For example:
 #
-#node.rack: ${RACK_ENV_VAR}
+#node.rack: ${ES_RACK}
 
 # For information on supported formats and syntax for the config file, see
 # <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>
@@ -71,6 +71,9 @@
 #node.master: false
 #node.data: false
 
+#node.master: ${ES_MASTER}
+#node.data: ${ES_DATA}
+
 # Use the Cluster Health API [http://localhost:9200/_cluster/health], the
 # Node Info API [http://localhost:9200/_nodes] or GUI tools
 # such as <http://www.elasticsearch.org/overview/marvel/>,
@@ -113,8 +116,8 @@
 # Note, that for development on a local machine, with small indices, it usually
 # makes sense to "disable" the distributed features:
 #
-#index.number_of_shards: 1
-#index.number_of_replicas: 0
+index.number_of_shards: ${ES_DEFAULT_SHARDS}
+index.number_of_replicas: ${ES_DEFAULT_REPLICAS}
 
 # These settings directly affect the performance of index and search operations
 # in your cluster. Assuming you have enough machines to hold shards and
@@ -205,7 +208,7 @@
 # Set the address other nodes will use to communicate with this node. If not
 # set, it is automatically derived. It must point to an actual IP address.
 #
-network.publish_host: ${ES_PUBLISH_HOST}
+#network.publish_host: ${ES_PUBLISH_HOST}
 
 # Set both 'bind_host' and 'publish_host':
 #
@@ -229,7 +232,7 @@ network.publish_host: ${ES_PUBLISH_HOST}
 
 # Disable HTTP completely:
 #
-#http.enabled: false
+#http.enabled: ${ES_HTTP}
 
 
 ################################### Gateway ###################################
@@ -323,7 +326,7 @@ network.publish_host: ${ES_PUBLISH_HOST}
 # 2. Configure an initial list of master nodes in the cluster
 #    to perform discovery when new nodes (master or data) are started:
 #
-discovery.zen.ping.unicast.hosts: ${ES_NODES_LIST}
+#discovery.zen.ping.unicast.hosts: ${ES_NODES_LIST}
 
 # EC2 discovery allows to use AWS EC2 API in order to perform discovery.
 #
