@@ -18,7 +18,7 @@
 # Any element in the configuration can be replaced with environment variables
 # by placing them in ${...} notation. For example:
 #
-#node.rack: ${RACK_ENV_VAR}
+#node.rack: ${ES_RACK}
 
 # For information on supported formats and syntax for the config file, see
 # <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>
@@ -71,6 +71,9 @@
 #node.master: false
 #node.data: false
 
+#node.master: ${ES_MASTER}
+#node.data: ${ES_DATA}
+
 # Use the Cluster Health API [http://localhost:9200/_cluster/health], the
 # Node Info API [http://localhost:9200/_nodes] or GUI tools
 # such as <http://www.elasticsearch.org/overview/marvel/>,
@@ -113,8 +116,8 @@
 # Note, that for development on a local machine, with small indices, it usually
 # makes sense to "disable" the distributed features:
 #
-#index.number_of_shards: 1
-#index.number_of_replicas: 0
+index.number_of_shards: ${ES_DEFAULT_SHARDS}
+index.number_of_replicas: ${ES_DEFAULT_REPLICAS}
 
 # These settings directly affect the performance of index and search operations
 # in your cluster. Assuming you have enough machines to hold shards and
@@ -229,7 +232,7 @@
 
 # Disable HTTP completely:
 #
-#http.enabled: false
+#http.enabled: ${ES_HTTP}
 
 
 ################################### Gateway ###################################
