@@ -33,6 +33,7 @@ RUN curl -L http://updates.jenkins-ci.org/latest/git-server.hpi -o  /tmp/WEB-INF
 RUN curl -L http://updates.jenkins-ci.org/latest/mapdb-api.hpi -o  /tmp/WEB-INF/plugins/mapdb-api.hpi
 RUN curl -L http://updates.jenkins-ci.org/latest/extended-choice-parameter.hpi -o  /tmp/WEB-INF/plugins/extended-choice-parameter.hpi 
 RUN curl -L http://updates.jenkins-ci.org/latest/git-parameter.hpi -o  /tmp/WEB-INF/plugins/git-parameter.hpi 
+RUN curl -L http://updates.jenkins-ci.org/latest/ruby-runtime.hpi -o  /tmp/WEB-INF/plugins/ruby-runtime.hpi
 RUN curl -L http://updates.jenkins-ci.org/latest/commit-message-trigger-plugin.hpi -o  /tmp/WEB-INF/plugins/commit-message-trigger-plugin.hpi
 
 COPY init.groovy /tmp/WEB-INF/init.groovy
