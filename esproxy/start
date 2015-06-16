@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export APACHE_CONFDIR=/etc/apache2
+. "$APACHE_CONFDIR/envvars"
+
+apache2 -DFOREGROUND

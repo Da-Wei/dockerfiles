@@ -1,13 +1,24 @@
-FROM dawei/java
+FROM dockerfile/java:oracle-java8
+
+ENV ES_DOWNLOAD_SHA1 ffe2e46ec88f4455323112a556adaaa085669d13
+
 # Install ElasticSearch.
-COPY build.sh /build/build.sh
-RUN /build/build.sh && rm -rf /build
-ENV ES_DEFAULT_SHARDS 1
-ENV ES_DEFAULT_REPLICAS 0
-ENV ES_MIN_MEM 1024m
-ENV ES_MAX_MEM 1024m
-ENV ES_PUBLISH_HOST ""
+RUN cd /tmp && \
+  curl -fSL -o elasticsearch.tar.gz "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.5.2.tar.gz" && \
+  echo "$ES_DOWNLOAD_SHA1  elasticsearch.tar.gz" | sha1sum -c - && \
+  mkdir -p /opt/elasticsearch && \
+  tar xfvz elasticsearch.tar.gz -C /opt/elasticsearch --strip-components=1 && \
+  rm elasticsearch.tar.gz
+
+# Install elasticsearch plugins
+RUN /opt/elasticsearch/bin/plugin --install elasticsearch/marvel/latest && \
+  /opt/elasticsearch/bin/plugin --install lmenezes/elasticsearch-kopf && \
+  mkdir -p /opt/elasticsearch/plugins/kibana/_site && \
+  curl -s -L https://github.com/elasticsearch/kibana/archive/v3.1.2.tar.gz \
+  | tar xvzC /opt/elasticsearch/plugins/kibana/_site 'kibana-3.1.2/src' --strip-components=2
+
 COPY elasticsearch.yml /opt/elasticsearch/config/elasticsearch.yml
-COPY start /start
-ENTRYPOINT ["/start"]
+
+ENTRYPOINT ["/opt/elasticsearch/bin/elasticsearch"]
 EXPOSE 9200
+EXPOSE 9300

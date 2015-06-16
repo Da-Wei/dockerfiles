@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /opt/packetbeat && curl -XPUT 'http://172.17.0.17:9200/_template/packetbeat' -d@packetbeat.template.json
+
+/opt/packetbeat/packetbeat -e -c /opt/packetbeat/packetbeat.yml -d "publish"

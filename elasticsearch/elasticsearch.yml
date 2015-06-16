@@ -116,8 +116,6 @@
 # Note, that for development on a local machine, with small indices, it usually
 # makes sense to "disable" the distributed features:
 #
-index.number_of_shards: ${ES_DEFAULT_SHARDS}
-index.number_of_replicas: ${ES_DEFAULT_REPLICAS}
 
 # These settings directly affect the performance of index and search operations
 # in your cluster. Assuming you have enough machines to hold shards and
@@ -387,4 +385,4 @@ index.number_of_replicas: ${ES_DEFAULT_REPLICAS}
 #
 #http.jsonp.enable: true
 
-indices.fielddata.cache.size: 40%
+marvel.agent.enabled: false
